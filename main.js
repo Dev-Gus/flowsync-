@@ -64,22 +64,75 @@ document.addEventListener('DOMContentLoaded', async function () {
   const nameInput = document.getElementById('user-name');
   const emailInput = document.getElementById('user-email');
 
-  if (addBtn && modal) {
-    addBtn.addEventListener('click', function () {
-      modal.classList.remove('modal-hidden');
-      modal.classList.add('modal-open');
-      clearFormErrors();
+  var modalTriggerEl = null; // element focus returns to on close
+
+  function getFocusableElements(container) {
+    if (!container) return [];
+    var selector = 'a[href], button:not([disabled]), textarea:not([disabled]), ' +
+      'input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    return Array.prototype.slice.call(container.querySelectorAll(selector)).filter(function (el) {
+      return el.offsetParent !== null; // skip hidden elements
     });
   }
 
-  function closeModal() {
-    if (modal) {
-      modal.classList.remove('modal-open');
-      // Wait for transition to finish before fully hiding
-      setTimeout(function () {
-        if (modal) modal.classList.add('modal-hidden');
-      }, 300);
+  function handleModalKeydown(e) {
+    if (!modal || !modal.classList.contains('modal-open')) return;
+
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeModal();
+      return;
     }
+
+    if (e.key === 'Tab') {
+      var panel = modal.querySelector('.modal-panel');
+      var focusable = getFocusableElements(panel);
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }
+
+  function openModal() {
+    if (!modal) return;
+    modalTriggerEl = document.activeElement;
+    modal.classList.remove('modal-hidden');
+    modal.classList.add('modal-open');
+    clearFormErrors();
+    document.addEventListener('keydown', handleModalKeydown);
+    var panel = modal.querySelector('.modal-panel');
+    var focusable = getFocusableElements(panel);
+    if (focusable.length) focusable[0].focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('modal-open');
+    document.removeEventListener('keydown', handleModalKeydown);
+    // Wait for transition to finish before fully hiding
+    setTimeout(function () {
+      if (modal) modal.classList.add('modal-hidden');
+    }, 300);
+
+    if (modalTriggerEl && typeof modalTriggerEl.focus === 'function') {
+      modalTriggerEl.focus();
+    }
+    modalTriggerEl = null;
+  }
+  // Exposed so other modules (e.g. the user-management form handler) reuse
+  // the same close path instead of re-hiding the modal by hand.
+  window.closeAddUserModal = closeModal;
+
+  if (addBtn && modal) {
+    addBtn.addEventListener('click', openModal);
   }
 
   if (modalCancel) modalCancel.addEventListener('click', closeModal);
@@ -501,23 +554,23 @@ document.addEventListener('DOMContentLoaded', async function () {
 
           if (success) {
             form.reset();
-            var modal = document.getElementById('add-user-modal');
-            if (modal) {
-              modal.classList.remove('modal-open');
-              setTimeout(function () {
-                modal.classList.add('modal-hidden');
-              }, 300);
+            if (window.closeAddUserModal) {
+              window.closeAddUserModal();
             }
 
-            var toast = document.getElementById('toast');
-            var toastMessage = toast ? toast.querySelector('.toast-message') : null;
-            if (toast && toastMessage) {
-              toastMessage.textContent = 'User added successfully';
-              toast.classList.remove('toast--success', 'toast--error');
-              toast.classList.add('toast--success', 'toast-visible');
-              setTimeout(function () {
-                toast.classList.remove('toast-visible');
-              }, 3000);
+            if (window.showToast) {
+              window.showToast('User added successfully', 'success');
+            } else {
+              var toast = document.getElementById('toast');
+              var toastMessage = toast ? toast.querySelector('.toast-message') : null;
+              if (toast && toastMessage) {
+                toastMessage.textContent = 'User added successfully';
+                toast.classList.remove('toast--success', 'toast--error');
+                toast.classList.add('toast--success', 'toast-visible');
+                setTimeout(function () {
+                  toast.classList.remove('toast-visible');
+                }, 3000);
+              }
             }
           }
         }
