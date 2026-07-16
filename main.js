@@ -797,8 +797,20 @@ document.addEventListener('DOMContentLoaded', async function () {
    * Call loadSettings for profile-form and notifications-form on DOMContentLoaded
    * Password form: never save to localStorage
    * Each form's submit event: preventDefault, call saveSettings, call showToast()
+   *
+   * Guarded against double-invocation: this gets called both by this IIFE's
+   * own init below AND by the top-level DOMContentLoaded handler (after the
+   * toast component loads). Without the guard, every form on this page ends
+   * up with duplicate submit listeners, which caused a real bug: submitting
+   * the password form would fire two handlers, the second one reading
+   * already-reset (empty) field values and re-showing validation errors
+   * right after a successful submit.
    */
+  var settingsInitialized = false;
   function initSettings() {
+    if (settingsInitialized) return;
+    settingsInitialized = true;
+
     // Load existing settings on page load
     loadSettings('profile-form', 'flowsync-profile-settings');
     loadSettings('notifications-form', 'flowsync-notifications-settings');
@@ -824,17 +836,69 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     // Password form: never save to localStorage
-    // Just prevent default and show success message
+    // Real client-side validation; still no backend, so no actual password change happens
     var passwordForm = document.getElementById('password-form');
     if (passwordForm) {
+      var currentPasswordInput = passwordForm.querySelector('[name="currentPassword"]');
+      var newPasswordInput = passwordForm.querySelector('[name="newPassword"]');
+      var confirmPasswordInput = passwordForm.querySelector('[name="confirmPassword"]');
+      var MIN_PASSWORD_LENGTH = 8;
+
+      function showPasswordFieldError(input, show) {
+        if (!input) return;
+        var errorSpan = input.parentElement.querySelector('.form-error');
+        if (show) {
+          input.classList.add('is-invalid');
+          if (errorSpan) errorSpan.classList.remove('hidden');
+        } else {
+          input.classList.remove('is-invalid');
+          if (errorSpan) errorSpan.classList.add('hidden');
+        }
+      }
+
+      function clearPasswordFormErrors() {
+        showPasswordFieldError(currentPasswordInput, false);
+        showPasswordFieldError(newPasswordInput, false);
+        showPasswordFieldError(confirmPasswordInput, false);
+      }
+
+      // Clear a field's error as soon as the person edits it
+      [currentPasswordInput, newPasswordInput, confirmPasswordInput].forEach(function (input) {
+        if (!input) return;
+        input.addEventListener('input', function () {
+          showPasswordFieldError(input, false);
+        });
+      });
+
       passwordForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        var newPassword = passwordForm.querySelector('[name="newPassword"]');
-        var confirmPassword = passwordForm.querySelector('[name="confirmPassword"]');
-        if (newPassword && confirmPassword && newPassword.value !== confirmPassword.value) {
-          window.showToast('Passwords do not match', 'error');
+        clearPasswordFormErrors();
+
+        var currentValue = currentPasswordInput ? currentPasswordInput.value : '';
+        var newValue = newPasswordInput ? newPasswordInput.value : '';
+        var confirmValue = confirmPasswordInput ? confirmPasswordInput.value : '';
+
+        var currentValid = currentValue.length > 0;
+        var newValid = newValue.length >= MIN_PASSWORD_LENGTH;
+        var confirmValid = confirmValue.length > 0 && confirmValue === newValue;
+
+        showPasswordFieldError(currentPasswordInput, !currentValid);
+        showPasswordFieldError(newPasswordInput, !newValid);
+
+        if (confirmPasswordInput) {
+          var confirmErrorSpan = confirmPasswordInput.parentElement.querySelector('.form-error');
+          if (confirmErrorSpan) {
+            confirmErrorSpan.textContent = confirmValue.length === 0
+              ? 'Please confirm your new password'
+              : 'Passwords do not match';
+          }
+        }
+        showPasswordFieldError(confirmPasswordInput, !confirmValid);
+
+        if (!currentValid || !newValid || !confirmValid) {
           return;
         }
+
         // Password changes would be sent to server in a real app
         window.showToast('Password changed successfully', 'success');
         passwordForm.reset();

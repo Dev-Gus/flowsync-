@@ -263,21 +263,24 @@
         <section id="tab-password" class="tab-content hidden">
           <div class="card max-w-2xl">
             <h2 class="text-lg font-semibold text-foreground mb-6">Change Password</h2>
-            <form id="password-form" class="space-y-4">
+            <form id="password-form" class="space-y-4" novalidate>
               <div>
                 <label class="input-label" for="current-password">Current password</label>
                 <input type="password" id="current-password" name="currentPassword" class="input"
                   placeholder="Enter current password" />
+                <span class="form-error hidden">Current password is required</span>
               </div>
               <div>
                 <label class="input-label" for="new-password">New password</label>
                 <input type="password" id="new-password" name="newPassword" class="input"
                   placeholder="Enter new password" />
+                <span class="form-error hidden">Password must be at least 8 characters</span>
               </div>
               <div>
                 <label class="input-label" for="confirm-password">Confirm new password</label>
                 <input type="password" id="confirm-password" name="confirmPassword" class="input"
                   placeholder="Confirm new password" />
+                <span class="form-error hidden">Passwords do not match</span>
               </div>
               <div class="pt-4 border-t border-border">
                 <button type="submit" class="btn-primary">Update Password</button>
