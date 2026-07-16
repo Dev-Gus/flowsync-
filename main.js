@@ -184,6 +184,26 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (profileDropdown) profileDropdown.classList.add('hidden');
   }
 
+  function clearSignedInState() {
+    var demoStateKeys = ['flowsync-users', 'flowsync-profile-settings', 'flowsync-notifications-settings'];
+
+    demoStateKeys.forEach(function (key) {
+      try {
+        localStorage.removeItem(key);
+      } catch (e) {
+        console.warn('Could not clear localStorage key:', key, e);
+      }
+    });
+  }
+
+  function handleSignOut() {
+    clearSignedInState();
+    window.showToast('Signed out successfully', 'success');
+    setTimeout(function () {
+      window.location.href = 'index.html';
+    }, 1000);
+  }
+
   if (notificationBtn) {
     notificationBtn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -196,6 +216,17 @@ document.addEventListener('DOMContentLoaded', async function () {
       e.stopPropagation();
       toggleDropdown(profileBtn, profileDropdown);
     });
+  }
+
+  if (profileDropdown) {
+    var signOutAction = profileDropdown.querySelector('[data-action="sign-out"]');
+    if (signOutAction) {
+      signOutAction.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        handleSignOut();
+      });
+    }
   }
 
   document.addEventListener('click', function () {
