@@ -7,12 +7,12 @@
   <meta name="description" content="FlowSync Users — Manage team members, roles, and permissions in your admin dashboard. Add, edit, and monitor user activity in real-time." />
   <meta property="og:title" content="FlowSync — Users" />
   <meta property="og:description" content="Manage team members, roles, and permissions with ease." />
-  <meta name="theme-color" content="#10b981" />
+  <meta name="theme-color" content="#09090b" />
   <title>FlowSync — Users</title>
   <link rel="stylesheet" href="output.css" />
   <script>
     (function () {
-      var theme = localStorage.getItem('flowsync-theme') || 'light';
+      var theme = localStorage.getItem('flowsync-theme') || 'dark';
       if (theme === 'dark') {
         document.documentElement.classList.add('dark');
       }
@@ -35,7 +35,7 @@
       <div class="p-6 border-b border-border flex items-center justify-between">
         <a class='flex items-center gap-3' href='index.html'>
           <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-sm">F</span>
+            <span class="text-on-primary font-bold text-sm">F</span>
           </div>
           <span class="text-lg font-semibold text-foreground">FlowSync</span>
         </a>
@@ -174,7 +174,7 @@
             <!-- Profile button -->
             <button class="w-9 h-9 rounded-full bg-primary flex items-center justify-center" aria-label="Profile menu"
               id="profile-btn">
-              <span class="text-sm font-medium text-white">JD</span>
+              <span class="text-sm font-medium text-on-primary">JD</span>
             </button>
           </div>
           <!-- Notification dropdown -->

@@ -6,12 +6,12 @@
   <meta name="description" content="FlowSync Billing — Manage subscriptions, pricing plans, and payment methods. View invoices and upgrade or downgrade your plan." />
   <meta property="og:title" content="FlowSync — Billing" />
   <meta property="og:description" content="Manage subscriptions and billing information." />
-  <meta name="theme-color" content="#10b981" />
+  <meta name="theme-color" content="#09090b" />
   <title>FlowSync — Billing</title>
   <link rel="stylesheet" href="output.css" />
   <script>
     (function () {
-      var theme = localStorage.getItem('flowsync-theme') || 'light';
+      var theme = localStorage.getItem('flowsync-theme') || 'dark';
       if (theme === 'dark') {
         document.documentElement.classList.add('dark');
       }
@@ -26,7 +26,7 @@
       <div class="p-6 border-b border-border flex items-center justify-between">
         <a class='flex items-center gap-3' href='index.html'>
           <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-sm">F</span>
+            <span class="text-on-primary font-bold text-sm">F</span>
           </div>
           <span class="text-lg font-semibold text-foreground">FlowSync</span>
         </a>
@@ -140,7 +140,7 @@
               </svg>
             </button>
             <button class="w-9 h-9 rounded-full bg-primary flex items-center justify-center" aria-label="Profile menu" id="profile-btn">
-              <span class="text-sm font-medium text-white">JD</span>
+              <span class="text-sm font-medium text-on-primary">JD</span>
             </button>
           </div>
           <!-- Notification dropdown -->
@@ -253,7 +253,7 @@
             <div class="card border-2 border-primary">
               <div class="flex flex-wrap items-center gap-2 mb-2">
                 <h3 class="text-lg font-semibold text-foreground">Professional</h3>
-                <span class="px-2 py-0.5 bg-primary text-white text-xs font-medium rounded">Current</span>
+                <span class="px-2 py-0.5 bg-primary text-on-primary text-xs font-medium rounded">Current</span>
               </div>
               <p class="text-muted text-sm mt-1">For growing teams</p>
               <div class="mt-4">

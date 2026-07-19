@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         data: revenue,
 
         // Line
-        borderColor: '#10b981',
+        borderColor: '#84cc16',
         borderWidth: 2,
 
         // Gradient fill under the line
@@ -651,12 +651,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         tension: 0.4,
 
         // Data point dots
-        pointBackgroundColor: '#10b981',
+        pointBackgroundColor: '#84cc16',
         pointBorderColor: '#09090b',       // matches body bg — creates a ring effect
         pointBorderWidth: 2,
         pointRadius: 4,
         pointHoverRadius: 6,
-        pointHoverBackgroundColor: '#10b981',
+        pointHoverBackgroundColor: '#84cc16',
         pointHoverBorderColor: '#ffffff',
         pointHoverBorderWidth: 2,
       }]

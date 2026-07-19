@@ -14,8 +14,8 @@
       gridColor:            'rgba(39, 39, 42, 0.8)',   // --color-border, softened
       tickColor:            '#71717a',                  // --color-muted
       legendColor:          '#fafafa',                  // --color-foreground
-      datasetBorder:        '#10b981',                  // --color-primary
-      datasetPoint:         '#10b981',
+      datasetBorder:        '#84cc16',                  // --color-primary
+      datasetPoint:         '#84cc16',
       datasetPointHover:    '#ffffff',
       tooltipBg:            '#18181b',                  // --color-surface
       tooltipText:          '#fafafa'
@@ -24,8 +24,8 @@
       gridColor:            'rgba(228, 228, 231, 0.8)', // zinc-200, softened
       tickColor:            '#52525b',                  // zinc-600 — readable on white
       legendColor:          '#18181b',
-      datasetBorder:        '#10b981',
-      datasetPoint:         '#10b981',
+      datasetBorder:        '#84cc16',
+      datasetPoint:         '#84cc16',
       datasetPointHover:    '#000000',
       tooltipBg:            '#ffffff',
       tooltipText:          '#18181b'
