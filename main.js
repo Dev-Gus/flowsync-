@@ -493,9 +493,20 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   // --- INIT ---
+  // Guarded against double-invocation, same bug family as initSettings()
+  // in the settings IIFE below: if this ever runs twice on the same page
+  // (e.g. a future "refresh users" call), `usersInitialized` stops a
+  // second submit listener from stacking on #add-user-form. The old
+  // `form.removeEventListener('submit', null)` here looked like it
+  // guarded against that, but removeEventListener is a no-op unless you
+  // pass the exact same function reference that was added — passing
+  // null removes nothing. It was silently doing nothing.
+  var usersInitialized = false;
   function initUsers() {
     var tableBody = document.querySelector('.table-body');
     if (!tableBody) return; // Not on users page
+    if (usersInitialized) return;
+    usersInitialized = true;
 
     var users = loadUsers();
     renderUsersTable(users);
@@ -509,7 +520,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Wire form submit to addUser
     var form = document.getElementById('add-user-form');
     if (form) {
-      form.removeEventListener('submit', null); // Remove old listener if any
       form.addEventListener('submit', function (e) {
         e.preventDefault();
 
