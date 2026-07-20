@@ -15,12 +15,15 @@
   <meta name="twitter:title" content="FlowSync — Dashboard" />
   <meta name="twitter:description" content="Real-time admin dashboard with analytics, user management, and integrations." />
   <meta name="twitter:image" content="https://flowsync3.netlify.app/assets/og-image.png" />
-  <meta name="theme-color" content="#09090b" />
+  <meta name="theme-color" content="#15130F" />
   <title>FlowSync — Dashboard</title>
   <link rel="icon" href="assets/favicon.ico" sizes="32x32" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="output.css" />
   <script>
     (function () {
@@ -169,7 +172,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <h1 class="text-xl font-semibold text-foreground">Dashboard</h1>
+          <h1 class="text-xl font-serif font-medium text-foreground">Dashboard</h1>
         </div>
 
         <!-- Right: Actions -->
@@ -240,7 +243,7 @@
                 </svg>
               </div>
             </div>
-            <p class="text-2xl font-bold text-foreground mt-2">12,847</p>
+            <p class="text-2xl font-mono font-semibold text-foreground mt-2">12,847</p>
             <p class="text-sm text-success mt-1">+12% from last month</p>
           </div>
 
@@ -255,7 +258,7 @@
                 </svg>
               </div>
             </div>
-            <p class="text-2xl font-bold text-foreground mt-2">$48,294</p>
+            <p class="text-2xl font-mono font-semibold text-foreground mt-2">$48,294</p>
             <p class="text-sm text-success mt-1">+8% from last month</p>
           </div>
 
@@ -270,7 +273,7 @@
                 </svg>
               </div>
             </div>
-            <p class="text-2xl font-bold text-foreground mt-2">284</p>
+            <p class="text-2xl font-mono font-semibold text-foreground mt-2">284</p>
             <p class="text-sm text-success mt-1">+4% from last month</p>
           </div>
 
@@ -285,7 +288,7 @@
                 </svg>
               </div>
             </div>
-            <p class="text-2xl font-bold text-foreground mt-2">3.24%</p>
+            <p class="text-2xl font-mono font-semibold text-foreground mt-2">3.24%</p>
             <p class="text-sm text-danger mt-1">-2% from last month</p>
           </div>
         </section>
@@ -293,15 +296,16 @@
         <!-- Revenue Chart Card -->
         <section class="card !p-4 md:!p-6">
 
-          <!-- Header: stacks vertically on mobile, row on sm+ -->
-          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
+          <!-- Header: eyebrow + editorial headline stat -->
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-6 pb-6 hairline border-b">
             <div>
-              <h2 class="text-lg font-semibold text-foreground">Revenue Over Time</h2>
+              <h2 class="text-sm font-medium text-muted uppercase tracking-wider">Revenue Over Time</h2>
               <p class="text-sm text-muted mt-0.5">Dec 2024 – May 2025</p>
             </div>
-            <span class="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full self-start sm:self-auto">
-              +18.4% overall
-            </span>
+            <div class="text-left sm:text-right">
+              <p class="headline-stat text-4xl md:text-5xl text-foreground">+18.4%</p>
+              <p class="text-sm text-muted mt-1">overall growth</p>
+            </div>
           </div>
 
           <div class="h-52 md:h-80">
@@ -315,7 +319,7 @@
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <!-- Activity Feed -->
           <div class="card lg:col-span-1">
-            <h2 class="text-lg font-semibold text-foreground mb-4">Recent Activity</h2>
+            <h2 class="text-lg font-serif font-medium text-foreground mb-4">Recent Activity</h2>
             <div class="space-y-4">
               <!-- Activity item -->
               <div class="flex gap-3">
@@ -392,7 +396,7 @@
 
           <!-- Recent Users Table -->
           <div class="card lg:col-span-2">
-            <h2 class="text-lg font-semibold text-foreground mb-4">Recent Users</h2>
+            <h2 class="text-lg font-serif font-medium text-foreground mb-4">Recent Users</h2>
             <div class="table-container">
               <table class="table">
                 <thead class="table-header">

@@ -14,12 +14,15 @@
   <meta name="twitter:title" content="FlowSync — Billing" />
   <meta name="twitter:description" content="Manage subscriptions and billing information." />
   <meta name="twitter:image" content="https://flowsync3.netlify.app/assets/og-image.png" />
-  <meta name="theme-color" content="#09090b" />
+  <meta name="theme-color" content="#15130F" />
   <title>FlowSync — Billing</title>
   <link rel="icon" href="assets/favicon.ico" sizes="32x32" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="output.css" />
   <script>
     (function () {
@@ -141,7 +144,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
           </button>
-          <h1 class="text-xl font-semibold text-foreground">Billing</h1>
+          <h1 class="text-xl font-serif font-medium text-foreground">Billing</h1>
         </div>
 
         <div class="relative">
@@ -194,12 +197,12 @@
         <section class="card">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h2 class="text-lg font-semibold text-foreground">Current Plan</h2>
+              <h2 class="text-lg font-serif font-medium text-foreground">Current Plan</h2>
               <p class="text-muted mt-1">You're on the <span class="text-primary font-medium">Professional</span> plan</p>
             </div>
             <div class="flex items-center gap-3">
               <span class="badge-active">Active</span>
-              <span class="text-2xl font-bold text-foreground">$49<span class="text-sm font-normal text-muted">/mo</span></span>
+              <span class="text-2xl font-mono font-semibold text-foreground">$49<span class="text-sm font-mono font-normal text-muted">/mo</span></span>
             </div>
           </div>
           <div class="mt-4 pt-4 border-t border-border">
@@ -214,7 +217,7 @@
               </div>
               <div>
                 <span class="text-muted">Storage:</span>
-                <span class="text-foreground ml-1">18 GB / 50 GB</span>
+                <span class="text-foreground font-mono ml-1">18 GB / 50 GB</span>
               </div>
             </div>
           </div>
@@ -222,14 +225,14 @@
 
         <!-- Pricing Tiers -->
         <section>
-          <h2 class="text-lg font-semibold text-foreground mb-4">Available Plans</h2>
+          <h2 class="text-lg font-serif font-medium text-foreground mb-4">Available Plans</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <!-- Starter -->
             <div class="card">
               <h3 class="text-lg font-semibold text-foreground">Starter</h3>
               <p class="text-muted text-sm mt-1">For small teams getting started</p>
               <div class="mt-4">
-                <span class="text-3xl font-bold text-foreground">$19</span>
+                <span class="text-3xl font-mono font-semibold text-foreground">$19</span>
                 <span class="text-muted">/mo</span>
               </div>
               <ul class="mt-4 space-y-2">
@@ -269,7 +272,7 @@
               </div>
               <p class="text-muted text-sm mt-1">For growing teams</p>
               <div class="mt-4">
-                <span class="text-3xl font-bold text-foreground">$49</span>
+                <span class="text-3xl font-mono font-semibold text-foreground">$49</span>
                 <span class="text-muted">/mo</span>
               </div>
               <ul class="mt-4 space-y-2">
@@ -306,7 +309,7 @@
               <h3 class="text-lg font-semibold text-foreground">Enterprise</h3>
               <p class="text-muted text-sm mt-1">For large organizations</p>
               <div class="mt-4">
-                <span class="text-3xl font-bold text-foreground">$149</span>
+                <span class="text-3xl font-mono font-semibold text-foreground">$149</span>
                 <span class="text-muted">/mo</span>
               </div>
               <ul class="mt-4 space-y-2">
@@ -342,7 +345,7 @@
 
         <!-- Payment Method -->
         <section class="card">
-          <h2 class="text-lg font-semibold text-foreground mb-4">Payment Method</h2>
+          <h2 class="text-lg font-serif font-medium text-foreground mb-4">Payment Method</h2>
           <div class="flex items-center justify-between flex-wrap gap-4">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
