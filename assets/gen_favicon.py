@@ -1,12 +1,12 @@
 """
-Generates FlowSync favicon assets matching the site's lime (#84cc16) on
-near-black (#09090b) identity, mirroring the sidebar logo mark:
-a rounded square, lime background, bold black "F".
+Generates FlowSync favicon assets matching the site's Editorial Ops
+identity: signal blue (#2D5BFF) background, white "F", rounded square —
+mirrors the sidebar logo mark.
 """
 from PIL import Image, ImageDraw, ImageFont
 
-LIME = (132, 204, 22, 255)       # --color-primary #84cc16
-INK = (9, 9, 11, 255)            # --color-on-primary / dark bg #09090b
+PRIMARY = "#2D5BFF"   # --color-primary
+TEXT = "#FFFFFF"      # white text — blue is too dark for black/ink text to read on
 FONT_PATH = "/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf"
 
 def make_icon(size: int) -> Image.Image:
@@ -17,7 +17,7 @@ def make_icon(size: int) -> Image.Image:
     draw = ImageDraw.Draw(img)
 
     radius = int(s * 0.22)  # matches rounded-lg proportions on the sidebar mark
-    draw.rounded_rectangle([0, 0, s - 1, s - 1], radius=radius, fill=LIME)
+    draw.rounded_rectangle([0, 0, s - 1, s - 1], radius=radius, fill=PRIMARY)
 
     font_size = int(s * 0.62)
     font = ImageFont.truetype(FONT_PATH, font_size)
@@ -26,7 +26,7 @@ def make_icon(size: int) -> Image.Image:
     tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
     x = (s - tw) / 2 - bbox[0]
     y = (s - th) / 2 - bbox[1]
-    draw.text((x, y), text, font=font, fill=INK)
+    draw.text((x, y), text, font=font, fill=TEXT)
 
     return img.resize((size, size), Image.LANCZOS)
 
