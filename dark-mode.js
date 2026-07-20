@@ -11,24 +11,24 @@
 
   var CHART_THEMES = {
     dark: {
-      gridColor:            'rgba(39, 39, 42, 0.8)',   // --color-border, softened
-      tickColor:            '#71717a',                  // --color-muted
-      legendColor:          '#fafafa',                  // --color-foreground
-      datasetBorder:        '#84cc16',                  // --color-primary
-      datasetPoint:         '#84cc16',
+      gridColor:            'rgba(51, 47, 39, 0.8)',    // --color-border, softened
+      tickColor:            '#9C988C',                  // --color-muted
+      legendColor:          '#EDEAE2',                  // --color-foreground
+      datasetBorder:        '#5B7CFF',                  // --color-primary (dark)
+      datasetPoint:         '#5B7CFF',
       datasetPointHover:    '#ffffff',
-      tooltipBg:            '#18181b',                  // --color-surface
-      tooltipText:          '#fafafa'
+      tooltipBg:            '#1D1B16',                  // --color-surface
+      tooltipText:          '#EDEAE2'
     },
     light: {
-      gridColor:            'rgba(228, 228, 231, 0.8)', // zinc-200, softened
-      tickColor:            '#52525b',                  // zinc-600 — readable on white
-      legendColor:          '#18181b',
-      datasetBorder:        '#84cc16',
-      datasetPoint:         '#84cc16',
+      gridColor:            'rgba(222, 218, 208, 0.8)', // --color-border, softened
+      tickColor:            '#6B675E',                  // darker muted — readable on paper
+      legendColor:          '#1A1A1A',
+      datasetBorder:        '#2D5BFF',
+      datasetPoint:         '#2D5BFF',
       datasetPointHover:    '#000000',
-      tooltipBg:            '#ffffff',
-      tooltipText:          '#18181b'
+      tooltipBg:            '#FFFFFF',
+      tooltipText:          '#1A1A1A'
     }
   };
 

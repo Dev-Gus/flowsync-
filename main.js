@@ -613,8 +613,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   // chartArea gives exact pixel bounds of the plot (excludes axes).
   function createGradient(ctx, chartArea) {
     var gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-    gradient.addColorStop(0, 'rgba(16, 185, 129, 0.25)'); // emerald 25% at top
-    gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');    // transparent at bottom
+    gradient.addColorStop(0, 'rgba(45, 91, 255, 0.25)');  // signal blue 25% at top
+    gradient.addColorStop(1, 'rgba(45, 91, 255, 0)');     // transparent at bottom
     return gradient;
   }
 
@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         data: revenue,
 
         // Line
-        borderColor: '#84cc16',
+        borderColor: '#2D5BFF',
         borderWidth: 2,
 
         // Gradient fill under the line
@@ -651,12 +651,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         tension: 0.4,
 
         // Data point dots
-        pointBackgroundColor: '#84cc16',
-        pointBorderColor: '#09090b',       // matches body bg — creates a ring effect
+        pointBackgroundColor: '#2D5BFF',
+        pointBorderColor: '#1D1B16',       // matches dark-mode card surface — creates a ring effect
         pointBorderWidth: 2,
         pointRadius: 4,
         pointHoverRadius: 6,
-        pointHoverBackgroundColor: '#84cc16',
+        pointHoverBackgroundColor: '#2D5BFF',
         pointHoverBorderColor: '#ffffff',
         pointHoverBorderWidth: 2,
       }]
@@ -683,11 +683,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         },
 
         tooltip: {
-          backgroundColor: '#18181b',
-          borderColor: '#27272a',
+          backgroundColor: '#1D1B16',
+          borderColor: '#332F27',
           borderWidth: 1,
-          titleColor: '#a1a1aa',
-          bodyColor: '#f4f4f5',
+          titleColor: '#9C988C',
+          bodyColor: '#EDEAE2',
           padding: 12,
           displayColors: false,
           callbacks: {
@@ -703,7 +703,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           border: { display: false },
           grid: { display: false },   // no vertical grid lines — cleaner
           ticks: {
-            color: '#a1a1aa',
+            color: '#9C988C',
             font: { size: 12 }
           }
         },
@@ -711,11 +711,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         y: {
           border: { display: false },
           grid: {
-            color: '#27272a',          // matches your --border token
+            color: '#332F27',          // matches your --border token
             lineWidth: 1
           },
           ticks: {
-            color: '#a1a1aa',
+            color: '#9C988C',
             font: { size: 12 },
             callback: function (value) {
               return '$' + (value / 1000).toFixed(0) + 'k'; // 38200 → $38k
